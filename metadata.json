@@ -1,0 +1,95 @@
+[
+  {
+    "year": 2008,
+    "name": "PacificVis 2008",
+    "submitted": 99,
+    "accepted": 30,
+    "rate": 30.3,
+    "location": "Kyoto, Japan",
+    "attendance": 112
+  },
+  {
+    "year": 2009,
+    "name": "PacificVis 2009",
+    "submitted": 66,
+    "accepted": 28,
+    "rate": 39.3,
+    "location": "Beijing, China",
+    "attendance": 100
+  },
+  {
+    "year": 2010,
+    "name": "PacificVis 2010",
+    "submitted": 84,
+    "accepted": 27,
+    "rate": 32.1,
+    "location": "Taipei, Taiwan",
+    "attendance": 139
+  },
+  {
+    "year": 2011,
+    "name": "PacificVis 2011",
+    "submitted": 81,
+    "accepted": 26,
+    "rate": 32.1,
+    "location": "Hong Kong",
+    "attendance": 100
+  },
+  {
+    "year": 2012,
+    "name": "PacificVis 2012",
+    "submitted": 89,
+    "accepted": 30,
+    "rate": 33.7,
+    "location": "Songdo, Korea",
+    "attendance": 91
+  },
+  {
+    "year": 2013,
+    "name": "PacificVis 2013",
+    "submitted": 118,
+    "accepted": 34,
+    "rate": 28.8,
+    "location": "Sydney, Australia",
+    "attendance": 70
+  },
+  {
+    "year": 2014,
+    "name": "PacificVis 2014",
+    "submitted": 99,
+    "accepted": 29,
+    "rate": 29.2,
+    "location": "Yokohama, Japan",
+    "attendance": 147
+  },
+  {
+    "year": 2015,
+    "name": "PacificVis 2015",
+    "submitted": 92,
+    "accepted": 28,
+    "rate": 30.4,
+    "location": "Hangzhou, China",
+    "attendance": 212
+  },
+  {
+    "year": 2016,
+    "name": "PacificVis 2016",
+    "submitted": 92,
+    "accepted": 28,
+    "rate": 29.9,
+    "location": "Taipei, Taiwan",
+    "attendance": 171
+  },
+  {
+    "year": 2017,
+    "name": "PacificVis 2017",
+    "submitted": 99,
+    "accepted": 29,
+    "rate": 29.3,
+    "location": "Seoul, Korea",
+    "attendance": 129
+  }
+]
+
+
+
