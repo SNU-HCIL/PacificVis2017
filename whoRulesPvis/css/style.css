@@ -1,0 +1,207 @@
+body{
+    text-align: left;
+    font-family: Alegreya Sans;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 400;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/KYNzioYhDai7mTMnx_gDgrSL3g004LNKkgHM9a6X73A.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/KYNzioYhDai7mTMnx_gDgrSL3g004LNKkgHM9a6X73A.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans'),
+    local('Alegreya-Sans-regular'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/KYNzioYhDai7mTMnx_gDgp7fs_z8nuqHYC6tC8rLl5s.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/KYNzioYhDai7mTMnx_gDgnt9r5m2YmP5sw3cUAQwL0E.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/KYNzioYhDai7mTMnx_gDgoB9a16epZVaac-gfobfbfA.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=KYNzioYhDai7mTMnx_gDgjjR3xVPJpEcWH1UXm1-s8c#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 900;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9adnBe0QciXpCzWCROFgtvMY.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9adnBe0QciXpCzWCROFgtvMY.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Black'),
+    local('Alegreya-Sans-900'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aTze9ImmdOK1SonNn_QOY2M.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aQSwPGcMCSy2SvAhU9B9Rog.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9af2K_H9ZzEDNEtaqIAK-HoI.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=11EDm-lum6tskJMBbdy9afLi8IWRaTV6sgt_Ubq0vts&skey=8820b7058d1ab315#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 900;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Ch_uNYChsUI31uc-KUBMwLs.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Ch_uNYChsUI31uc-KUBMwLs.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Black Italic'),
+    local('Alegreya-Sans-900italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Ck1GKgVoVqCtbuL-qXOVl7Q.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Ciq1S4wjrEWnqeCW2YCcBDI.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CobCsgU_jp9Lq9WYUd4Zb_g.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=WfiXipsmjqRqsDBQ1bA9CuDlhviHlUzmdam-kcgN4TQ&skey=109729c659157169#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 700;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aTaqlI4Zbww6vO_YCdhgxeo.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aTaqlI4Zbww6vO_YCdhgxeo.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Bold'),
+    local('Alegreya-Sans-700'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aSFcOIMZuYN7K3FRrJkYYms.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aVV8F1P-UN-fltcX6iMUcbA.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aX726VmFjkD_1knHNL407_k.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=11EDm-lum6tskJMBbdy9aTMNmawHWsxtE2x84tjAX1I&skey=c542a612544589f2#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 700;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CoN9v1E9s2s8jv6Rx3KRXFM.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CoN9v1E9s2s8jv6Rx3KRXFM.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Bold Italic'),
+    local('Alegreya-Sans-700italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Ch2kKkj4EE9uTMGX3dHbMqI.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CsPyqN-ucfDDCRJHsPzxxN0.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CkXZMkInVmE5F43bEXap4GE.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=WfiXipsmjqRqsDBQ1bA9CjDUNo_fDsprKQliNc120xk&skey=f8e2c3e66945eca4#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 800;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aWuju2IcSCG-a0B3cN-MAlc.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aWuju2IcSCG-a0B3cN-MAlc.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans ExtraBold'),
+    local('Alegreya-Sans-800'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aSsPtzGU7XgmiOMpkvc57q4.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aZtLUwydQU1zc0rhYK0-ZWE.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aRHnHbPwUmH7PMJEvaxN4tA.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=11EDm-lum6tskJMBbdy9aQpHooTm5SM-e0bYflhlpR8#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 800;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CmB4IMcCdUYZiqJ1eKxqZBQ.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CmB4IMcCdUYZiqJ1eKxqZBQ.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans ExtraBold Italic'),
+    local('Alegreya-Sans-800italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Cv4eJPw1N9n2ubqfjpPgDRo.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Ck7MH95d3bZ5tGN9Me_fYCc.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Cs6zOI0pjlStGO1UwdkVvsA.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=WfiXipsmjqRqsDBQ1bA9CrV2oPa1rBRc7g2EizsiWjA&skey=dd8d3088bec4f2ac#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 400;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PEaA4UDuhMXS88OyPKPJRdI.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PEaA4UDuhMXS88OyPKPJRdI.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Italic'),
+    local('Alegreya-Sans-italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PL-MGAgQ7T4Lx8Yeka2Yy30.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PNA87aWxC834_3i5Wx3tdEA.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PMTRVpfLYDaJu02tGY_cDUU.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=TKyx_-JJ6MdpQruNk-t-PAaO9A8rbHcrtCtU7E2MJ98&skey=40e47c41c6236e80#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 300;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aXpzoWMhCGBxZR-F3lIjwoQ.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aXpzoWMhCGBxZR-F3lIjwoQ.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Light'),
+    local('Alegreya-Sans-300'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aes4I3LabJhqMsUb5UIEB_o.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aanUXp5W4FLE8OnWB9t-aHo.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9ac5nNYjIb-KbqEh50utxFtk.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=11EDm-lum6tskJMBbdy9aVi23_SsAxI7ZCac_Xmke6w#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 300;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CuG-WZz-1DTwgU2ia_tB6Qs.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CuG-WZz-1DTwgU2ia_tB6Qs.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Light Italic'),
+    local('Alegreya-Sans-300italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CpQB2Vp4dijuI39VEkBaQks.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9ClvI_N2yegfdkaVu78aoD1M.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Cr6rH6_fD_-Le79V1-WjGD8.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=WfiXipsmjqRqsDBQ1bA9ClMLOeKR-1Kbd_MMvsUFZSs&skey=e304989c3a7d0d0c#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 500;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aavtqssTGFxKBYDOY35-ctA.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aavtqssTGFxKBYDOY35-ctA.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Medium'),
+    local('Alegreya-Sans-500'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9afDHhyC1TRD9sSvvqBBgc4w.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aRSu2h6M8zeGTOAvuRkzdcM.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/11EDm-lum6tskJMBbdy9aYbHQgMiPeC0S_y2k9np4ck.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=11EDm-lum6tskJMBbdy9aYAtZcN_2HNZOarCoCsaTns&skey=2fba1343c636ee49#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 500;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CgCONBFOVFsx-hK7IjrCMMY.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CgCONBFOVFsx-hK7IjrCMMY.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Medium Italic'),
+    local('Alegreya-Sans-500italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Chcyu53RaqNGzN0a9AexcKA.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9CgyKQI-gvCfe5vPgUhaMzPs.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/WfiXipsmjqRqsDBQ1bA9Csu5A6Q16drCslwRrweSiJM.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=WfiXipsmjqRqsDBQ1bA9CgRv__1KFBPX3lGrv8-gLKQ&skey=bc47a5fb3e95d107#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 100;
+    font-style: normal;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PEj9jKN0mrW2JlfgpgABkXg.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PEj9jKN0mrW2JlfgpgABkXg.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Thin'),
+    local('Alegreya-Sans-100'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PDIGk-CbhXUpQeqvUUQgXes.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PMirbh6OUF7J5FHbYIz0tTY.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/TKyx_-JJ6MdpQruNk-t-PMDtSOXLvbGaPuwEXJiol_g.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=TKyx_-JJ6MdpQruNk-t-POUwc2Z2NccQRCLqma-87B8&skey=8dfa542415c8f18#AlegreyaSans') format('svg');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-weight: 100;
+    font-style: italic;
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/gRkSP2lBpqoMTVxg7DmVnx3_z7XAx40bZec3GAqBMUk.eot');
+    src: url('http://fonts.gstatic.com/s/alegreyasans/v3/gRkSP2lBpqoMTVxg7DmVnx3_z7XAx40bZec3GAqBMUk.eot?#iefix') format('embedded-opentype'),
+    local('Alegreya Sans Thin Italic'),
+    local('Alegreya-Sans-100italic'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/gRkSP2lBpqoMTVxg7DmVn8MzGSQqNWCmve9lCTmqc1A.woff2') format('woff2'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/gRkSP2lBpqoMTVxg7DmVnxQcIx1ERc_xDFS4xnpbx38.woff') format('woff'),
+    url('http://fonts.gstatic.com/s/alegreyasans/v3/gRkSP2lBpqoMTVxg7DmVn51GvkFS-1JdC_EuoCxkPxw.ttf') format('truetype'),
+    url('http://fonts.gstatic.com/l/font?kit=gRkSP2lBpqoMTVxg7DmVn0vx2OHas1l2wHkgd2Bw-ow&skey=d17c319c8d33a22d#AlegreyaSans') format('svg');
+}
+
+
+.ui-slider{
+    width: 150px;
+    height: 15px;
+}
+
