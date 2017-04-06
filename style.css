@@ -7,3 +7,33 @@ body {
   width: 100%;
   height: 250px;
 }
+
+.paper {
+  border:1px solid #ddd;
+  width:700px;
+  margin:20px auto;
+  padding: 50px 40px;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, .1)
+}
+
+.paper h1 {
+  text-align:center;
+}
+
+.paper h3 {
+  text-align:center;
+  font-style:italic;
+  font-size:1.2em;
+}
+
+.paper .abstract {
+  margin: 40px 60px 40px 60px;
+}
+
+
+.paper footer {
+  text-align:center;
+
+}
+
+body >footer {height:500px;}

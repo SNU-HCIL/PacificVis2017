@@ -43,10 +43,10 @@ def main():
       if i == 0:
         continue
 
-      year = int(row[2].strip())
+      year = int(row[1].strip())
       title = row[3]
       abstract = row[4]
-      authors = set(map(lambda x: x.strip(), row[5].split(';')))
+      authors = map(lambda x: x.strip(), row[5].split(';'))
       keywords = set(map(lambda x: x.strip(), row[7].split(';')))
       citation = int(row[10].strip())
       countries = set(map(lambda x: x.strip(), row[12].split(';')))
@@ -63,13 +63,24 @@ def main():
       papers.append({
         'title': title,
         'authors': authors,
-        'citation': citation
+        'citation': citation,
+        'year': year
       })
 
-  pp.pprint(sorted(papers, key=lambda x: x['citation'], reverse = True)[:5])
+    print(json.dumps(
+      [{"name":
+      paper['authors'][0].split(' ')[-1] + " et al. (" +
+      str(paper['year']) + ") " +
+        paper['title']
+        ,"authors": paper['authors']
+        , "count": paper['citation']} for paper in
+      sorted(papers, key=lambda x: x['citation'], reverse = True)[:10]]))
+
   pp.pprint(sorted(authors_count.items(), key=operator.itemgetter(1), reverse=True)[:10])
   pp.pprint(sorted(countries_count.items(), key=operator.itemgetter(1), reverse=True)[:10])
-  pp.pprint(sorted(keywords_count.items(), key=operator.itemgetter(1), reverse=True)[:10])
+  pp.pprint(
+      [{"name": a, "count": b} for a, b in sorted(keywords_count.items(), key=operator.itemgetter(1), reverse=True)[:10]]
+      )
 
   make_graph(papers)
 

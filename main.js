@@ -20,9 +20,6 @@ function renderAcceptanceRate(json) {
 
       .height(500)
 
-    w = chart;
-    console.log(chart)
-
     var data = [
       {
         values: json.map(function(d) {
@@ -59,9 +56,6 @@ function renderAttendance(json) {
       .axisLabel('Attendance')
       .tickFormat(d3.format(','))
       .height(500)
-
-    w = chart;
-    console.log(chart)
 
     var sum = 0;
     json.forEach(function(d){
@@ -115,9 +109,6 @@ function renderPaperCount(json) {
       .tickFormat(d3.format(','))
       .height(500)
 
-    w = chart;
-    console.log(chart)
-
     var sum = 0;
     json.forEach(function(d){
       sum += d.accepted;
@@ -151,10 +142,178 @@ function renderPaperCount(json) {
   });
 }
 
+function renderAuthors(authors){
+  nv.addGraph(function() {
+      var chart = nv.models.multiBarHorizontalChart()
+          .x(function(d) { return d.name  })    //Specify the data accessors.
+          .y(function(d) { return d.count  })
+          .margin({left: 120, right:30})
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+//          .tickFormat(function(d){return d;})
+          .valueFormat(function(d){return d;})
+          .showControls(false)
+
+    chart.yAxis
+      .axisLabel('# of papers')
+      .tickFormat(d3.format(','))
+      .height(500)
+
+    d3.select('#authors')
+      .datum([
+        {
+          key: '# of papers',
+          values: authors
+        }
+      ])
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+
+  });
+}
+
+function renderPapers(papers) {
+  nv.addGraph(function() {
+      var chart = nv.models.multiBarHorizontalChart()
+          .x(function(d) { return d.name  })    //Specify the data accessors.
+          .y(function(d) { return d.count  })
+          .margin({left: 120, right:30})
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+//          .tickFormat(function(d){return d;})
+          .valueFormat(function(d){return d;})
+          .showControls(false)
+
+    chart.yAxis
+      .axisLabel('# of papers')
+      .tickFormat(d3.format(','))
+      .height(500)
+
+    d3.select('#most-cited')
+      .datum([
+        {
+          key: '# of papers',
+          values: papers
+        }
+      ])
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+
+  });
+}
+
+function renderPapers(papers) {
+  nv.addGraph(function() {
+      var chart = nv.models.multiBarHorizontalChart()
+          .x(function(d) { return d.name.substring(0, 50) + '...'  })    //Specify the data accessors.
+          .y(function(d) { return d.count  })
+          .margin({left: 300, right:30})
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+//          .tickFormat(function(d){return d;})
+          .valueFormat(function(d){return d;})
+          .showControls(false)
+
+    chart.yAxis
+      .axisLabel('# of papers')
+      .tickFormat(d3.format(','))
+      .height(500)
+
+    d3.select('#most-cited')
+      .datum([
+        {
+          key: '# of papers',
+          values: papers
+        }
+      ])
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+
+  });
+}
+
+function renderCountries(countries){
+  nv.addGraph(function() {
+      var chart = nv.models.multiBarHorizontalChart()
+          .x(function(d) { return d.name  })    //Specify the data accessors.
+          .y(function(d) { return d.count  })
+          .margin({left: 120, right:30})
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+//          .tickFormat(function(d){return d;})
+          .valueFormat(function(d){return d;})
+          .showControls(false)
+
+    chart.yAxis
+      .axisLabel('# of papers')
+      .tickFormat(d3.format(','))
+      .height(500)
+
+    d3.select('#countries')
+      .datum([
+        {
+          key: '# of papers',
+          values: countries
+        }
+      ])
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+
+  });
+}
+
+function renderKeywords(keywords) {
+  nv.addGraph(function() {
+      var chart = nv.models.multiBarHorizontalChart()
+          .x(function(d) { return d.name  })    //Specify the data accessors.
+          .y(function(d) { return d.count  })
+          .margin({left: 150, right:30})
+          .showValues(true)       //...instead, show the bar value right on top of each bar.
+//          .tickFormat(function(d){return d;})
+          .valueFormat(function(d){return d;})
+          .showControls(false)
+
+    chart.yAxis
+      .axisLabel('# of papers')
+      .tickFormat(d3.format(','))
+      .height(500)
+
+    d3.select('#keywords')
+      .datum([
+        {
+          key: '# of papers',
+          values: keywords
+        }
+      ])
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+
+  });
+}
+
+
+
 $(function() {
+  $('[data-toggle="tooltip"]').tooltip()
+
   d3.json('metadata.json', function(json) {
-    renderAcceptanceRate(json)
-    renderAttendance(json)
-    renderPaperCount(json)
+    renderAcceptanceRate(json.conferences)
+    renderAttendance(json.conferences)
+    renderPaperCount(json.conferences)
+    renderAuthors(json.authors)
+    renderCountries(json.countries)
+    renderPapers(json.papers)
+    renderKeywords(json.keywords)
   });
 })
