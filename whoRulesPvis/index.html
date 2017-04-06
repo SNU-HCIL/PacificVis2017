@@ -1,0 +1,259 @@
+<!--
+
+Author: Charles Perin
+
+2015, May 29
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Who Rules PacificVis?</title>
+    <link type="text/css" rel="stylesheet" href="./css/jquery-ui-lightness/jquery-ui-1.10.3.custom.min.css"/>
+    <link type="text/css" rel="stylesheet" href="./css/style.css"/>
+    <link rel='shortcut icon' type='image/png' href='./favicon.png' />
+    <script src="./lib/d3/d3.js"></script>
+    <script src="./lib/jquery/jquery-1.9.1.js"></script>
+    <script src="./lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="./lib/jquery/jquery.csv-0.71.min.js"></script>
+    <script src="./lib/reorder/science.v1.js"></script>
+    <script src="./lib/reorder/reorder.v1.js"></script>
+    <script src="./js/Utils.js"></script>
+    <script src="./js/Chart.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1>Who Rules PacificVis? 2008 ~ 2016 </h1>
+
+</div>
+
+<script>
+
+
+    const PARAMS = {
+        width: 3600,
+        height: 1700,//ratio: 0.707
+
+        scales: {
+            fontSizeRange: [7,14],
+            fontWeightRange: [400,999],
+            strokeWidthRange: [.5,5]
+        },
+
+        layout: {
+            yearStart: "roles"
+        },
+
+        boxColors: {
+            sides: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#b15928", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"],
+            center: "#80b1d3",
+            opacity: .15
+        },
+
+        rolesOrder : [
+            'Accomodation Chair', 
+            'Conference Chair', 
+            'Exhibition Chair', 
+            'Finance Chair', 
+            'Local Arrangement Chair', 
+            'Local Organization Chair', 
+            'Local Organization Committee', 
+            'Organization Chair', 
+            'PacificVAST Workshop Chair', 
+            'Paper Chair', 
+            'Poster Chair', 
+            'Program Chair', 
+            'Program Committee', 
+            'Publication Chair', 
+            'Publicity Chair', 
+            'Registration Chair', 
+            'Sponsorship Chair', 
+            'Steering Committee', 
+            'Student Volunteer Chair', 
+            'Symposium Chair', 
+            'Visualization Notes Chair', 
+            'Visualization Notes Committee'
+        ],
+
+        chart: {
+            margin: {
+                top: 0,
+                bottom: 20,
+                left: 0,
+                right: 20
+            },
+            background:{
+                fill: "white"
+            },
+            dyFactor:.4
+        },
+        years: {
+            margin: {
+                top: 5,
+                bottom: 40,
+                left: 50,
+                right: 200
+            },
+            height: 10
+        },
+        frame: {
+            margin: {
+                bottom: 0,
+                top: 10,
+                right: 100
+            }
+        },
+        boxes: {
+            margin: {
+                left: 20
+            },
+            legend: {
+                fontSize: "7px",
+                width: 100,
+                heightFactor: 4
+            }
+        },
+        line: {
+            interpolate: "basis"
+        },
+        pathes:{
+            dyMin: 15,
+            opacity:30,
+            color: {
+                freeToRole: "#377eb8",
+                roleToFree: "#e41a1c",
+                freeToFree: "#F9966B",
+                roleToRole: "#000000"
+            },
+            gradients: {
+                roleToFree: {
+                    attrs: {
+                        id: "roleToFree",
+                        gradientUnits: "userSpaceOnUse",
+                        x1: "0",
+                        x2: "100%",
+                        y1: "0",
+                        y2: "0"
+                    } ,
+                    stops: [
+                        {offset: "0%", color: "red"},
+                        {offset: "100%", color: "black"}
+                    ],
+                    style: {
+                        fill: "none",//d3.rgb(76,0,255),
+                        stroke: "url(#roleToFree)",
+                        opacity:.3
+                    }
+                },
+                freeToRole: {
+                    attrs: {
+                        id: "freeToRole",
+                        gradientUnits: "userSpaceOnUse",
+                        x1: "0",
+                        x2: "100%",
+                        y1: "0",
+                        y2: "0"
+                    } ,
+                    stops: [
+                        {offset: "0%", color: "black"},
+                        {offset: "100%", color: "blue"}
+                    ],
+                    style: {
+                        fill: "none",//d3.rgb(76,0,255),
+                        stroke: "url(#freeToRole)",
+                        opacity:.3
+                    }
+                },
+                roleToRole: {
+                    attrs: {
+                        id: "roleToRole",
+                        gradientUnits: "userSpaceOnUse",
+                        x1: "0",
+                        x2: "100%",
+                        y1: "0",
+                        y2: "0"
+                    } ,
+                    stops: [
+                        {offset: "0%", color: "black"},
+                        {offset: "100%", color: "black"}
+                    ],
+                    style: {
+                        fill: "none",//d3.rgb(76,0,255),
+                        stroke: "url(#roleToRole)",
+                        opacity:.3
+                    }
+                },
+                freeToFree: {
+                    attrs: {
+                        id: "freeToFree",
+                        gradientUnits: "userSpaceOnUse",
+                        x1: "0",
+                        x2: "100%",
+                        y1: "0",
+                        y2: "0"
+                    } ,
+                    stops: [
+                        {offset: "0%", color: "black"},
+                        {offset: "100%", color: "black"}
+                    ],
+                    style: {
+                        fill: "none",//d3.rgb(76,0,255),
+                        stroke: "url(#freeToFree)",
+                        opacity:.3
+                    }
+                }
+            }
+        }
+    };
+
+    /*
+     init function starting when the document is ready
+     */
+    $(document).ready(function(){
+
+        var selectedFile = null;
+        var audio = null;
+
+        var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        if(!is_chrome){
+            createChromeError();
+        }
+        else {
+            new Chart(PARAMS);
+        }
+
+
+
+        function createChromeError (){
+            d3.select("#main")
+                    .style("text-align","center")
+                    .html(
+                    "Please use <a href='http://www.google.com/chrome/'>Google Chrome</a> to access the page. We do not guarantee everything works as it should using other browsers."
+            );
+        }
+
+    });
+
+
+
+
+    getImage = function(name,extension,state){
+        return "./img/"+name+(state != undefined ? "-"+state : "")+extension;
+    };
+
+</script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+sliderParams: {
+      barGradient: {
+        attrs: {
+          id: "gradientBars",
+          gradientUnits: "userSpaceOnUse",
+          x1: "0",
+          x2: "0",
+          y1: "0",
+          y2: "100%"
+        } ,
+        stops: [
+          {offset: "0%", color: "rgb(255,0,23)"},
+          {offset: "40%", color: "rgb(254,210,45)"},
+          {offset: "55%", color: "rgb(223,7,252)"},
+          {offset: "100%", color: "rgb(44,255,254)"}
+        ]
+      },
+      barStyle: {
+        fill: "url(#gradientBars)",//d3.rgb(76,0,255),
+        stroke: "none",
+        opacity: 1
+      }
+    }
+
+
+
+
+
+var defs = this.svg.append("defs");
+
+    this.sliderParams.barGradient.attrs.y1 = -frameDim.height/2;
+    this.sliderParams.barGradient.attrs.y2 = frameDim.height/2;
+    var gradientBars = defs.append("linearGradient")
+        .attr(this.sliderParams.barGradient.attrs);
+
+    this.sliderParams.barGradient.stops.forEach(function(stop){
+        gradientBars.append("stop").attr({
+            offset: stop.offset
+        }).style({
+            "stop-color": stop.color
+        });
+    });
