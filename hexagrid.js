@@ -223,7 +223,7 @@ function resized() {
   anchorEnter.append("path")
       .attr("d", hexbin.hexagon());
 
-  anchor = anchorEnter.merge(anchor)
+  anchor = anchorEnter
       .attr("transform", function(d) { return "translate(" + d + ")"; });
 }
 
