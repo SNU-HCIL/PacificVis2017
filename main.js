@@ -217,6 +217,11 @@ function renderPapers(papers) {
           .valueFormat(function(d){return d;})
           .showControls(false)
 
+    chart.tooltip.contentGenerator(function(obj) {
+      return obj.data.name;
+    })
+
+
     chart.yAxis
       .axisLabel('# of papers')
       .tickFormat(d3.format(','))
