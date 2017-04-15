@@ -146,6 +146,11 @@
     {
       "name": "Netherlands",
       "count": 17
-    }
+    },
+    {"name": "Australia", "count": 16},
+    {"name": "France", "count": 14},
+    {"name": "Austria", "count": 12},
+    {"name": "Canada", "count": 10},
+    {"name": "Norway", "count": 9}
   ]
 }
