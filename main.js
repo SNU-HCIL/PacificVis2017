@@ -302,7 +302,154 @@ function renderKeywords(keywords) {
   });
 }
 
+function renderTitleHistogram(data) {
+  nv.addGraph(function() {
+      var chart = nv.models.discreteBarChart()
+          .color(function() { return '#1f77b4';})
+          .x(function(d) { return d.key })
+          .y(function(d) { return d.values.length })
+          .showValues(true)
+          .valueFormat(d3.format('d'))
+          .duration(250);
 
+      chart.xAxis
+        .axisLabel('# of words');
+
+      chart.yAxis
+        .axisLabel('# of papers')
+        .tickFormat(d3.format('d'));
+
+      chart.tooltip.contentGenerator(function(obj) {
+        let pubs = obj.data.values.map(d => '<li>' + d['Title'] + '</li>').join('');
+        return '<h4 style="margin-left:1em;">' + obj.data.values.length + ' Papers</h4>' + '<ul style="margin-right:2em;">' + pubs + '</ul>';
+      });
+
+      let nest = d3.nest()
+        .key(function(d) { return d['words in title']; })
+        .sortKeys(function(a, b) { return a * 1 - b * 1})
+        .sortValues(function(a, b) { return d3.ascending(a['Title'], b['Title']); });
+
+      d3.select('#titleHisto')
+          .datum([{
+            key: 'titleHisto',
+            values: nest.entries(data)
+          }])
+          .call(chart);
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+}
+
+function renderAuthorHistogram(data) {
+  nv.addGraph(function() {
+      var chart = nv.models.discreteBarChart()
+          .color(function() { return '#1f77b4';})
+          .x(function(d) { return d.key })
+          .y(function(d) { return d.values.length })
+          .showValues(true)
+          .valueFormat(d3.format('d'))
+          .duration(250);
+
+      chart.xAxis
+        .axisLabel('# of authors');
+
+      chart.yAxis
+        .axisLabel('# of papers')
+        .tickFormat(d3.format('d'));
+
+      chart.tooltip.contentGenerator(function(obj) {
+          let authors = _.uniq(obj.data.values.map(d => d['Author']).join(';').split(';'));
+          return '<div style="margin:10px"><strong>' + obj.data.values.length + '</strong> Papers & <strong>' + authors.length + '</strong> Authors</div>';
+      })
+
+      let nest = d3.nest()
+        .key(function(d) { return d['# of authors']; })
+        .sortKeys(function(a, b) { return a * 1 - b * 1});
+
+      d3.select('#authorHisto')
+          .datum([{
+            key: 'authorHisto',
+            values: nest.entries(data)
+          }])
+          .call(chart);
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+}
+
+function renderFigureHistogram(data) {
+  nv.addGraph(function() {
+      var chart = nv.models.discreteBarChart()
+          .color(function() { return '#1f77b4';})
+          .x(function(d) { return d.key })
+          .y(function(d) { return d.values.length })
+          .showValues(true)
+          .valueFormat(d3.format('d'))
+          .duration(250);
+
+      chart.xAxis
+        .axisLabel('# of Figures');
+
+      chart.yAxis
+        .axisLabel('# of papers')
+        .tickFormat(d3.format('d'));
+
+      chart.tooltip.contentGenerator(function(obj) {
+        let pubs = obj.data.values.map(d => '<li>' + d['Title'] + '</li>').join('');
+        return '<h4 style="margin-left:1em;">' + obj.data.values.length + ' Papers</h4>' + '<ul style="margin-right:2em;">' + pubs + '</ul>';
+      });
+
+      let nest = d3.nest()
+        .key(function(d) { return d['figure_num']; })
+        .sortKeys(function(a, b) { return a * 1 - b * 1});
+
+      d3.select('#figureHisto')
+          .datum([{
+            key: '# of Figures',
+            values: nest.entries(data)
+          }])
+          .call(chart);
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+}
+
+function renderTableHistogram(data) {
+  nv.addGraph(function() {
+      var chart = nv.models.discreteBarChart()
+          .color(function() { return '#1f77b4';})
+          .x(function(d) { return d.key })
+          .y(function(d) { return d.values.length })
+          .showValues(true)
+          .valueFormat(d3.format('d'))
+          .duration(250);
+
+      chart.xAxis
+        .axisLabel('# of Tables');
+
+      chart.yAxis
+        .axisLabel('# of papers')
+        .tickFormat(d3.format('d'));
+
+      chart.tooltip.contentGenerator(function(obj) {
+        let pubs = obj.data.values.map(d => '<li>' + d['Title'] + '</li>').join('');
+        return '<h4 style="margin-left:1em;">' + obj.data.values.length + ' Papers</h4>' + '<ul style="margin-right:2em;">' + pubs + '</ul>';
+      });
+
+      let nest = d3.nest()
+        .key(function(d) { return d['table_num']; })
+        .sortKeys(function(a, b) { return a * 1 - b * 1});
+
+      d3.select('#tableHisto')
+          .datum([{
+            key: '# of Tables',
+            values: nest.entries(data)
+          }])
+          .call(chart);
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+}
 
 $(function() {
   $('[data-toggle="tooltip"]').tooltip()
@@ -315,5 +462,12 @@ $(function() {
     renderCountries(json.countries)
     renderPapers(json.papers)
     renderKeywords(json.keywords)
+  });
+
+  d3.csv('final_merged.csv', function(csv) {
+    renderTitleHistogram(csv);
+    renderAuthorHistogram(csv);
+    renderFigureHistogram(csv);
+    renderTableHistogram(csv);
   });
 })
