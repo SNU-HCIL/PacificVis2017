@@ -186,3 +186,9 @@ body {
   font-weight: normal;
   line-height: 150%;
 }
+
+svg#conferenceMap path {
+  stroke: white;
+  stroke-width: 0.25px;
+  fill: grey;
+}

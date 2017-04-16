@@ -590,13 +590,14 @@ function renderAuthorGraph(data) {
 
       node.attr('opacity', 1);
       link.attr('opacity', 1);
-    })
-    .call(force.drag);
+    });
+    //.call(force.drag);
 
     g.select('g.nodes').call(tip);
 
   var nodeAnimate = false,
       linkAnimate = false;
+  var tickCount = 0;
   force.on("tick", function() {
       if (!nodeAnimate && force.alpha() < 0.1) {
         node.transition().duration(750)
@@ -615,7 +616,161 @@ function renderAuthorGraph(data) {
           .attr("y2", function(d) { return d.target.y; });
 
       node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+      tickCount++;
+      if (tickCount > 150) {
+        force.stop();
+      }
   });
+}
+
+function renderConferences(data) {
+    var svg = d3.select("#conferenceMap")
+      width = parseFloat(svg.style("width")),
+      height = parseFloat(svg.style("height"));
+
+    var projection = d3.geo.mercator()
+        .center([-60, 5])
+        .scale(300)
+        .rotate([-180,0]);
+    var path = d3.geo.path()
+        .projection(projection);
+
+    var topo_layer = svg.append("g"),
+        path_layer = svg.append("g"),
+        symbol_layer = svg.append("g");
+
+    d3.json("world-110m2.json", function(error, topology) {
+        topo_layer.selectAll("path")
+          .data(topojson.object(topology, topology.objects.countries).geometries)
+        .enter().append("path")
+          .attr("d", path);
+
+        var cities = symbol_layer.selectAll("g")
+          .data(data).enter().append('g')
+          .attr('class', 'city')
+          .attr('opacity', 0)
+          .attr('transform', d => 'translate(' + projection([d.longitude, d.latitude]) + ')');
+
+        cities.append("circle")
+          .attr("cx", 0)
+          .attr("cy", 0)
+          .attr("r", 2)
+          .attr("fill", "red");
+
+        cities.append('text')
+          .attr('x', 0)
+          .attr('y', -15)
+          .attr('text-anchor', 'middle')
+          .attr('alignment-baseline', 'central')
+          .attr('font-size', "1em")
+          .attr('fill', "black")
+          .style('font-family', "Helvetica Neue, Helvetica, Arial, sans-serif")
+          .text(d => d.year);
+
+        cities.append('text')
+          .attr('x', 0)
+          .attr('y', -35)
+          .attr('text-anchor', 'middle')
+          .attr('alignment-baseline', 'central')
+          .attr('font-size', "1em")
+          .attr('fill', "black")
+          .style('font-family', "Helvetica Neue, Helvetica, Arial, sans-serif")
+          .text(d => d.location);
+
+        var lineData = _.map(_.tail(data), (d, i) => {
+          var start = projection([data[i].longitude, data[i].latitude]),
+              end = projection([d.longitude, d.latitude]);
+          return {
+            year: data[i].year,
+            x1: start[0],
+            y1: start[1],
+            x2: end[0],
+            y2: end[1],
+          };
+        });
+
+        path_layer.selectAll('line')
+          .data(lineData)
+        .enter().append('line')
+          .attr('opacity', 0)
+          .attr("x1", d => d.x1)
+          .attr("y1", d => d.y1)
+          .attr("x2", d => d.x1)
+          .attr("y2", d => d.y1)
+          //.attr('stroke', "url(#gradLine2)");
+          .attr('stroke', "black")
+          .attr('stroke-width', 2);
+
+        function animation() {
+          cities.each(function(d, i) {
+              path_layer.selectAll('line')
+                  .filter(n => n.year === d.year)
+                .attr('opacity', 1)
+                .transition().delay((i+1) * 2000).duration(1000)
+                .attr('x2', n => n.x2)
+                .attr('y2', n => n.y2)
+                .transition().duration(500)
+                .attr('opacity', 0);
+
+              d3.select(this)
+                .attr('opacity', 0)
+              .transition().delay(i * 2000).duration(1000)
+                .attr('opacity', 1);
+
+              d3.select(this)
+                .selectAll('text')
+                .attr('opacity', 1)
+              .transition().delay((i+1) * 2000).duration(1000)
+                .attr('opacity', i === cities.size() - 1 ? 1 : 0);
+
+              d3.select(this)
+                .select('circle')
+                .attr("r", 2)
+              .transition().delay(i * 2000).duration(500)
+                .attr("r", 8)
+              .transition().duration(500)
+                .attr("r", 4);
+
+              d3.select(this)
+                .select('circle')
+                .attr("fill", "red")
+                .transition().delay((i+1) * 2000).duration(1000)
+                .attr("fill", i === cities.size() - 1 ? "red" : "blue")
+                .each("end", function() {
+                  if (i === cities.size() - 1) {
+                    cities.attr('opacity', 0);
+                    cities.select('circle')
+                      .attr("r", 2)
+                      .attr("fill", "red");
+
+                    cities.selectAll('text')
+                      .attr('opacity', 1);
+
+                    path_layer.selectAll('line')
+                      .attr('opacity', 0)
+                      .attr("x2", d => d.x1)
+                      .attr("y2", d => d.y1);
+
+                    animation();
+                  }
+                });
+          });
+        }
+
+        animation();        
+    });
+/*
+    var zoom = d3.behavior.zoom()
+        .on("zoom",function() {
+            g.attr("transform","translate("+ d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+            g.selectAll("circle")
+                .attr("d", path.projection(projection));
+            g.selectAll("path")
+                .attr("d", path.projection(projection));
+      });
+    svg.call(zoom);
+    */
 }
 
 $(function() {
@@ -629,6 +784,7 @@ $(function() {
     renderCountries(json.countries)
     renderPapers(json.papers)
     renderKeywords(json.keywords)
+    renderConferences(json.conferences);
   });
 
   d3.csv('final_merged.csv', function(csv) {

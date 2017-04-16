@@ -7,6 +7,8 @@
       "accepted": 30,
       "rate": 30.3,
       "location": "Kyoto, Japan",
+      "latitude": 35.011636,
+      "longitude": 135.768029,
       "attendance": 112
     },
     {
@@ -16,6 +18,8 @@
       "accepted": 28,
       "rate": 39.3,
       "location": "Beijing, China",
+      "latitude": 39.904211,
+      "longitude": 116.407395,
       "attendance": 100
     },
     {
@@ -25,6 +29,8 @@
       "accepted": 27,
       "rate": 32.1,
       "location": "Taipei, Taiwan",
+      "latitude": 25.032969,
+      "longitude": 121.565418,
       "attendance": 139
     },
     {
@@ -34,6 +40,8 @@
       "accepted": 26,
       "rate": 32.1,
       "location": "Hong Kong",
+      "latitude": 22.396428,
+      "longitude": 114.109497,
       "attendance": 100
     },
     {
@@ -43,6 +51,8 @@
       "accepted": 30,
       "rate": 33.7,
       "location": "Songdo, Korea",
+      "latitude": 37.383912,
+      "longitude": 126.643855,
       "attendance": 91
     },
     {
@@ -52,6 +62,8 @@
       "accepted": 34,
       "rate": 28.8,
       "location": "Sydney, Australia",
+      "latitude": -33.868820,
+      "longitude": 151.209296,
       "attendance": 70
     },
     {
@@ -61,6 +73,8 @@
       "accepted": 29,
       "rate": 29.2,
       "location": "Yokohama, Japan",
+      "latitude": 35.443708,
+      "longitude": 139.638026,
       "attendance": 147
     },
     {
@@ -70,6 +84,8 @@
       "accepted": 28,
       "rate": 30.4,
       "location": "Hangzhou, China",
+      "latitude": 30.274085,
+      "longitude": 120.155070,
       "attendance": 212
     },
     {
@@ -79,6 +95,8 @@
       "accepted": 28,
       "rate": 29.9,
       "location": "Taipei, Taiwan",
+      "latitude": 25.032969,
+      "longitude": 121.565418,
       "attendance": 171
     },
     {
@@ -88,6 +106,8 @@
       "accepted": 29,
       "rate": 29.3,
       "location": "Seoul, Korea",
+      "latitude": 37.566535,
+      "longitude": 126.977969,
       "attendance": 129
     }
   ],
