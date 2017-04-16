@@ -45,12 +45,12 @@
             PacificVis Papers use 8.5 words in the title.
             <!--<span data-toggle="tooltip" data-placement="right" title="On average, PacificVis papers use 8.5 words for the title. Out of 313 papers, only 12 (4%) papers used three or less words. The longest title had 19 words, so if you want to impress your reviewers, just make the title longer than 20 words!">
             </span>-->
-            <a href="#" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
+            <a href="#anchor-title" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
           </h1>
 
           <h3>
             Four, authors, worked, together
-            <a href="#" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
+            <a href="#anchor-author" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
             <!--<span data-toggle="tooltip" data-placement="right" title="On average, 4 authors work on a PacificVis paper together. Only three papers had 10 co-authors! By the way, could we enter more than 10 authors on the PCS system?">-->
             </span>
           </h3>
@@ -59,7 +59,7 @@
         <section class="abstract">
           <p>
             <strong>Abstract</strong>—On average, 154 words are used in the abstracts of PacificVis papers. The shortest one had 49 words while the longest one had 322 words, which used up about a quarter of the first page!
-            <a href="#" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
+            <a href="#anchor-abstract" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
           </p>
           <!--<p data-toggle="tooltip" data-placement="right"
             title="On average, 154 words are used in the abstracts of PacificVis papers. The longest one had 322 words, which used up about a quarter of the first page!">
@@ -79,13 +79,13 @@
             </div>
 
             <img src="http://pacificvis.snu.ac.kr/assets/pacific_vis_logo-786683814a5023b3a2e4e5ababf99c29ddeeae71b3d695c62237fce3d24f3763.jpg" style="width:100%;margin-top:20px">
-            <div class="caption">Fig. 1. The logo of PacificVis 2017 <a href="#" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
+            <div class="caption">Fig. 1. The logo of PacificVis 2017 <a href="#anchor-figure" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="caption">Table 1. General Information
-              <a href="#" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
+              <a href="#anchor-table" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
             </div>
             <table class="table table-bordered table-stripped">
               <tr>
@@ -136,9 +136,19 @@
         <svg id="paper-count"></svg>
       </div>
 
+      <h2 id="anchor-author"># of Authors</h2>
+      <div class="vis-block">
+        <svg id="authorHisto"></svg>
+      </div>
+
       <h2>Top 5 Authors</h2>
       <div class="vis-block">
         <svg id="authors"></svg>
+      </div>
+
+      <h2>Author Graph</h2>
+      <div style="width:100%">
+        <svg id="authorGraph" style="width:100%;height:500px;"></svg>
       </div>
 
       <h2>Top 5 Countries</h2>
@@ -155,23 +165,21 @@
       <div class="vis-block">
         <svg id="keywords"></svg>
       </div>
+      <div style="width:100%">
+        <img src='keywords.png' style="width:100%"></img>
+      </div>
 
-      <h2># of Words in Titles</h2>
+      <h2 id="anchor-title"># of Words in Titles</h2>
       <div class="vis-block">
         <svg id="titleHisto"></svg>
       </div>
 
-      <h2># of Authors</h2>
-      <div class="vis-block">
-        <svg id="authorHisto"></svg>
-      </div>
-
-      <h2># of Figures</h2>
+      <h2 id="anchor-figure"># of Figures</h2>
       <div class="vis-block">
         <svg id="figureHisto"></svg>
       </div>
 
-      <h2># of Tables</h2>
+      <h2 id="anchor-table"># of Tables</h2>
       <div class="vis-block">
         <svg id="tableHisto"></svg>
       </div>
@@ -181,20 +189,13 @@
         <svg id="keywordWordcloud"></svg>
       </div>
 -->
-      <h2>Keywords</h2>
-      <div style="width:100%">
-        <img src='keywords.png' style="width:100%"></img>
-      </div>
 
-      <h2>Abstract</h2>
+      <h2 id="anchor-abstract">Abstract</h2>
       <div style="width:100%">
         <img src='abstract.png' style="width:100%"></img>
       </div>
 
-      <h2>Author Graph</h2>
-      <div style="width:100%">
-        <svg id="authorGraph" style="width:100%;height:500px;"></svg>
-      </div>
+
     </div>
 
 	  <footer id="footer">
