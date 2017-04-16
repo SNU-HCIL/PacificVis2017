@@ -170,3 +170,19 @@ body {
   padding:20px;
   background:#eee;
 }
+
+.d3-tip .graph-node-author {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.d3-tip .graph-node-desc {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.d3-tip .graph-node-coauthor-list {
+  font-size: 0.8em;
+  font-weight: normal;
+  line-height: 150%;
+}

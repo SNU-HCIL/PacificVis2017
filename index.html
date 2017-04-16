@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="lib/nvd3/nv.d3.css" rel="stylesheet">
+    <link href="d3-tip.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -175,6 +175,26 @@
       <div class="vis-block">
         <svg id="tableHisto"></svg>
       </div>
+<!--
+      <h2>Keywords</h2>
+      <div style="width:100%">
+        <svg id="keywordWordcloud"></svg>
+      </div>
+-->
+      <h2>Keywords</h2>
+      <div style="width:100%">
+        <img src='keywords.png' style="width:100%"></img>
+      </div>
+
+      <h2>Abstract</h2>
+      <div style="width:100%">
+        <img src='abstract.png' style="width:100%"></img>
+      </div>
+
+      <h2>Author Graph</h2>
+      <div style="width:100%">
+        <svg id="authorGraph" style="width:100%;height:500px;"></svg>
+      </div>
     </div>
 
 	  <footer id="footer">
@@ -186,8 +206,10 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="d3.layout.cloud.js"></script>
     <script src="lib/nvd3/nv.d3.js"></script>
     <script src="lib/nvdc/d3.hexbin.v0.min.js"></script>
+    <script src="d3-tip.js"></script>
     <script src="main.js"></script>
     <script src="hexagrid.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>

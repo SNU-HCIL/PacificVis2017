@@ -456,6 +456,168 @@ function renderTableHistogram(data) {
   });
 }
 
+function renderWordcloud(data) {
+  console.log(data);
+  var max = d3.max(data, d => d.count);
+  var sizeScale = d3.scale.linear()
+    .domain([1, max])
+    .range([5, 100]);
+
+  var width = 900, height = 350;
+  var fill = d3.scale.category20();
+  var layout = d3.layout.cloud()
+      .size([width, height])
+      .words(data)
+      .padding(3)
+      .rotate(function(d) { return 0; })
+      .text(function(d) { return d.text; })
+      .font("Sans-serif")
+      .fontWeight("bold")
+      .fontSize(function(d) { return sizeScale(Math.pow(d.count, 2)); })
+      .on("end", function(words) {
+          d3.select("#keywordWordcloud")
+            .attr("width", width)
+            .attr("height", height)
+          .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+          .selectAll("text")
+            .data(words, d => d.text)
+          .enter().append("text")
+            .attr("fill", function(d, i) { return fill(i); })
+            .style("font-size", function(d) { return d.size + "px"; })
+            .style("font-weight", "bold")
+            .style("font-family", "Sans-serif")
+            .style("user-select", "none")
+            .attr("text-anchor", "middle")
+            .attr("transform", function(d) {
+              return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { return d.text; });
+      });
+
+      layout.start();
+}
+
+function renderAuthorGraph(data) {
+  var tip = d3.tip().attr('class', 'd3-tip')
+    .direction('e')
+    .offset([0, 80])
+    .html(d => {
+      var header = '<p class="graph-node-author">' + d.id + '</p>'
+      var abstract = '<p class="graph-node-desc">' + d.count + ' Papers with</p>';
+      var list = links.filter(link => d === link.source || d === link.target);
+      list = '<ul class="graph-node-coauthor-list">' + list.map(link => {
+        return '<li>' + (d === link.source ? link.target.id : link.source.id) + '</li>';
+      }).join('') + '</ul>';
+
+      return header + abstract + list;
+    });
+
+  var nodes = data.nodes.sort((a, b) => b.count - a.count).slice(0, 100);
+  var authorDict = _.fromPairs(nodes.map(d => [d.id, d.count]));
+  var links = data.links
+                .filter(d => _.has(authorDict, d.source) && _.has(authorDict, d.target))
+                .map(d => {
+                  return {
+                    count: d.count,
+                    source: _.findIndex(nodes, {'id': d.source}),
+                    target: _.findIndex(nodes, {'id': d.target}),
+                  }
+                });
+
+  var svg = d3.select("#authorGraph"),
+      width = parseFloat(svg.style("width")),
+      height = parseFloat(svg.style("height"));
+
+  var k = Math.sqrt(nodes.length / (width * height));
+
+  var force = d3.layout.force()
+      //.gravity(0.05)
+      //.distance(40)
+      //.charge(-100)
+      .charge(-10 / k)
+      .gravity(100 * k)
+      .size([width - 20, height - 20])
+      .nodes(nodes)
+      .links(links)
+      .start();
+    
+  var g = svg.append('g')
+    .attr('transform', 'translate(10, 10)');
+
+  var link = g.append("g")
+    .attr("class", "links")
+   .selectAll("line")
+    .data(links)
+  .enter().append("line")
+    .attr('opacity', 0)
+    .attr("stroke", 'grey')
+    .attr("stroke-width", function(d) { return Math.sqrt(d.count); });
+
+  var rScale = d3.scale.sqrt()
+    .domain([1, d3.max(nodes, function(d) {return d.count;})])
+    .range([2, 10])
+
+  var color = d3.scale.linear()
+    .domain(rScale.domain())
+    .interpolate(d3.interpolateHcl)
+    .range([d3.rgb('#1a84ed'), d3.rgb('#27337f')]);
+
+  var node = g.append("g")
+    .attr("class", "nodes")
+  .selectAll("circle")
+    .data(nodes)
+  .enter().append("circle")
+    .attr('opacity', 0)
+    .attr("r", function(d){ return rScale(d.count) })
+    .attr("fill", function(d) { return color(d.count); })
+    .on('mouseover', function(d) {
+      node.attr('opacity', 0.3);
+      link.attr('opacity', 0.3);
+
+      var myLinks = link.filter(link => d === link.source || d === link.target);
+      myLinks.attr('opacity', 1);
+
+      var neighbors = myLinks.data().map(n => d === n.target ? n.source : n.target);
+      var neighborDict = _.fromPairs(neighbors.map(n => [n.id, 1]));
+      node.filter(n => _.has(neighborDict, n.id)).attr('opacity', 1);
+      d3.select(this).attr('opacity', 1);
+
+      tip.show(d);
+    })
+    .on('mouseout', function(d) {
+      tip.hide();
+
+      node.attr('opacity', 1);
+      link.attr('opacity', 1);
+    })
+    .call(force.drag);
+
+    g.select('g.nodes').call(tip);
+
+  var nodeAnimate = false,
+      linkAnimate = false;
+  force.on("tick", function() {
+      if (!nodeAnimate && force.alpha() < 0.1) {
+        node.transition().duration(750)
+          .attr('opacity', 1);
+          nodeAnimate = true;
+      }
+      if (!linkAnimate && force.alpha() < 0.05) {
+        link.transition().duration(750)
+          .attr('opacity', 1);
+          linkAnimate = true;
+      }
+
+      link.attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+
+      node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  });
+}
+
 $(function() {
   $('[data-toggle="tooltip"]').tooltip()
 
@@ -475,4 +637,13 @@ $(function() {
     renderFigureHistogram(csv);
     renderTableHistogram(csv);
   });
+/*
+  d3.json('wordcount.json', function(json) {
+    renderWordcloud(json.keyword.sort((a, b) => b.count - a.count));
+  })
+*/  
+
+  d3.json('graph.json', function(json) {
+    renderAuthorGraph(json);
+  })
 })
