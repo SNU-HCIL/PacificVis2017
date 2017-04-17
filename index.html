@@ -32,10 +32,6 @@
     </div>
 
 		<div class="container">
-      <h2>Average(PacificVis Papers)</h2>
-      <p>
-        Hover the cursor over titles and figures!
-      </p>
       <article class="paper">
         <header>
           <p>
@@ -68,9 +64,13 @@
         <section class="row">
           <div class="col-md-6">
             <h4>Introduction</h4>
-            <div class="image" style="height:100px">
+            <p>
+              This is a summary of all PacificVis papers. Click on the question mark to see details!
+              <br />
+            </p>
+<!--            <div class="image" style="height:100px">
               <div></div>
-            </div>
+            </div>-->
 
             <img src="http://pacificvis.snu.ac.kr/assets/pacific_vis_logo-786683814a5023b3a2e4e5ababf99c29ddeeae71b3d695c62237fce3d24f3763.jpg" style="width:100%;margin-top:20px">
             <div class="caption">Fig. 1. The logo of PacificVis 2017 <a href="#anchor-figure" class="detail"><span class="glyphicon glyphicon-question-sign"></span></a>
@@ -242,11 +242,13 @@ var words = [{"text": "data", "fontSize": 943, "fontFamily": "Lato", "x": 1081.7
         function rotate(x) { return 'rotate(' + x + ')'; }
         function scale(x) { return 'scale(' + x + ')';}
 
-        ready(function () {
+        window.render1 =  function () {
             var svg = d3.select('#wordle1'),
                 containerWidth = svg[0][0].parentNode.offsetWidth,
-                wordleScale = containerWidth / wordle.width,
-                g = svg.append('g')
+            wordleScale = containerWidth / wordle.width;
+
+          svg.select('g').remove();
+            var  g = svg.append('g')
 
 
             //g.attr('transform', scale(wordleScale));
@@ -290,7 +292,7 @@ var words = [{"text": "data", "fontSize": 943, "fontFamily": "Lato", "x": 1081.7
                     });
 
             ;
-        });
+        }
       </script>
   <script>
     (function(){
@@ -302,16 +304,18 @@ var words = [{"text": "data", "fontSize": 943, "fontFamily": "Lato", "x": 1081.7
         function rotate(x) { return 'rotate(' + x + ')'; }
         function scale(x) { return 'scale(' + x + ')';}
 
-        ready(function () {
+        window.render2 = function () {
             var svg = d3.select('#wordle2'),
                 containerWidth = svg[0][0].parentNode.offsetWidth,
-                wordleScale = containerWidth / wordle.width,
-                g = svg.append('g')
+            wordleScale = containerWidth / wordle.width;
+
+          svg.select('g').remove();
+          var g = svg.append('g')
 
             g.attr('transform', 'scale(0.3)translate(1200, 100)');//scale(wordleScale));
           svg.attr('width', 1170).attr('height', 440)
 
-
+g.selectAll('text').remove()
             g
                 .selectAll('text')
                 .data(words)
@@ -349,8 +353,14 @@ var words = [{"text": "data", "fontSize": 943, "fontFamily": "Lato", "x": 1081.7
                     });
 
             ;
-        });
-        })();
+        }})();
+ready(function(){
+  render1(); render2();
+  setInterval(function(){
+    render1();
+    render2();
+  }, 30000)
+})
     </script>
 
 

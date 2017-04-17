@@ -504,7 +504,7 @@ function renderAuthorGraph(data) {
     .offset([0, 80])
     .html(d => {
       var header = '<p class="graph-node-author">' + d.id + '</p>'
-      var abstract = '<p class="graph-node-desc">' + d.count + ' Papers with</p>';
+      var abstract = '<p class="graph-node-desc">' + d.count + ' Papers</p>';
       var list = links.filter(link => d === link.source || d === link.target);
       list = '<ul class="graph-node-coauthor-list">' + list.map(link => {
         return '<li>' + (d === link.source ? link.target.id : link.source.id) + '</li>';
