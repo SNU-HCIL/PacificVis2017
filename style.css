@@ -190,5 +190,5 @@ body {
 svg#conferenceMap path {
   stroke: white;
   stroke-width: 0.25px;
-  fill: grey;
+  fill: #ccc;
 }

@@ -541,7 +541,7 @@ function renderAuthorGraph(data) {
       .nodes(nodes)
       .links(links)
       .start();
-    
+
   var g = svg.append('g')
     .attr('transform', 'translate(10, 10)');
 
@@ -656,7 +656,7 @@ function renderConferences(data) {
           .attr("cx", 0)
           .attr("cy", 0)
           .attr("r", 2)
-          .attr("fill", "red");
+          .attr("fill", "#f44336");
 
         cities.append('text')
           .attr('x', 0)
@@ -734,15 +734,15 @@ function renderConferences(data) {
 
               d3.select(this)
                 .select('circle')
-                .attr("fill", "red")
+                .attr("fill", "#f44336")
                 .transition().delay((i+1) * 2000).duration(1000)
-                .attr("fill", i === cities.size() - 1 ? "red" : "blue")
+                .attr("fill", i === cities.size() - 1 ? "#f44336" : "#303f9f")
                 .each("end", function() {
                   if (i === cities.size() - 1) {
                     cities.attr('opacity', 0);
                     cities.select('circle')
                       .attr("r", 2)
-                      .attr("fill", "red");
+                      .attr("fill", "#f44336");
 
                     cities.selectAll('text')
                       .attr('opacity', 1);
@@ -758,7 +758,7 @@ function renderConferences(data) {
           });
         }
 
-        animation();        
+        animation();
     });
 /*
     var zoom = d3.behavior.zoom()
@@ -797,7 +797,7 @@ $(function() {
   d3.json('wordcount.json', function(json) {
     renderWordcloud(json.keyword.sort((a, b) => b.count - a.count));
   })
-*/  
+*/
 
   d3.json('graph.json', function(json) {
     renderAuthorGraph(json);
