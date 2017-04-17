@@ -147,7 +147,7 @@
         <svg id="titleHisto"></svg>
       </div>
 
-      <h2 id="anchor-author"># of Authors</h2>
+      <h2 id="anchor-author"># of Authors of a Paper</h2>
       <div class="vis-block">
         <svg id="authorHisto"></svg>
       </div>
@@ -178,12 +178,12 @@
       <svg id="wordle2"></svg>
 
 
-      <h2 id="anchor-figure"># of Figures</h2>
+      <h2 id="anchor-figure"># of Figures in a Paper</h2>
       <div class="vis-block">
         <svg id="figureHisto"></svg>
       </div>
 
-      <h2 id="anchor-table"># of Tables</h2>
+      <h2 id="anchor-table"># of Tables in a Paper</h2>
       <div class="vis-block">
         <svg id="tableHisto"></svg>
       </div>
@@ -253,7 +253,7 @@ var words = [{"text": "data", "fontSize": 943, "fontFamily": "Lato", "x": 1081.7
 
             //g.attr('transform', scale(wordleScale));
             g.attr('transform', 'scale(0.15)translate(3200,800)')
-          svg.attr('width', 1170).attr('height', 480)
+          svg.attr('width', 1170).attr('height', 400)
 
             g
                 .selectAll('text')
@@ -313,7 +313,7 @@ var words = [{"text": "data", "fontSize": 943, "fontFamily": "Lato", "x": 1081.7
           var g = svg.append('g')
 
             g.attr('transform', 'scale(0.3)translate(1200, 100)');//scale(wordleScale));
-          svg.attr('width', 1170).attr('height', 440)
+          svg.attr('width', 1170).attr('height', 400)
 
 g.selectAll('text').remove()
             g
